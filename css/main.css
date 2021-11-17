@@ -78,6 +78,16 @@ img.avatar {
     margin: auto;
 }
 
+div.sort-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    height: 20px;
+}
+
+
 .project-list .project-row {
     display: block;
     box-sizing: content-box;

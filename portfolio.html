@@ -16,20 +16,43 @@
     </header>
 
     <main>
+        <div class="sort-div">
+            <p style="display: inline;">Sort by:</p>
+            <select id="sort-select">
+                <option value="date-dsc">Date (Descending)</option>
+                <option value="date-asc">Date (Ascending)</option>
+            </select>
+        </div>
+        
         <div class="project-list">
             <div class="project-row">
                 <img src="img/izzy.png">
                 <h3>Izzy Engine</h2>
                 <p>
+                    <b>date:</b> <span name="date-2021-5-12"></span><br>
+                    <b>type:</b> game framework<br>
                     <b>status:</b> postponed<br>
                     <b>links:</b> <a href="https://github.com/gedehari/IzzyEngine">github</a>
                 </p>
                 <p>Izzy Engine is a complete recreation of Friday Night Funkin', aiming for easy custom content creation. </p>
             </div>
             <div class="project-row">
+                <h3>the thought machine</h2>
+                <p>
+                    <b>date:</b> <span name="date-2021-3-9"></span><br>
+                    <b>type:</b> site<br>
+                    <b>status:</b> ongoing<br>
+                    <b>links:</b> <a href="https://thought-machine.herokuapp.com/">site</a>
+                </p>
+                <p>An anonymous board for posting thoughts.</p>
+                <p>I made this during my time of learning Node.JS and Express.JS, where I learnt how JavaScript can be used for backends.</p>
+            </div>
+            <div class="project-row">
                 <img src="img/packet.png">
                 <h3>Packet Inbound</h2>
                 <p>
+                    <b>date:</b> <span name="date-2021-1-14"></span><br>
+                    <b>type:</b> game<br>
                     <b>status:</b> finished<br>
                     <b>links:</b> <a href="https://gedehari.itch.io/packet-inbound">itch.io</a>
                 </p>
@@ -40,6 +63,8 @@
                 <img src="img/bird.png">
                 <h3>Bird go Flap Flap!</h2>
                 <p>
+                    <b>date:</b> <span name="date-2021-0-18"></span><br>
+                    <b>type:</b> game<br>
                     <b>status:</b> finished<br>
                     <b>links:</b> <a href="https://gedehari.itch.io/bird-go-flap-flap">itch.io</a>
                 </p>
@@ -52,6 +77,61 @@
     <footer>
         <p class="copyright"><b>2021</b> - gedehari</p>
     </footer>
+
+    <script type="text/javascript">
+        "use strict";
+        // To whoever reads this, I'm sorry for this crap code
+
+        function returnDateFromString(str) {
+            str = str.replace("date-", "");
+            var split = str.split("-").map(function(s) { return parseInt(s)});
+            return new Date(split[0], split[1], split[2]);
+        }
+
+        function sort(asc = false) {
+            // sorts the array
+            arrProjects.sort(function(a, b) {
+                let dateA = a[2];
+                let dateB = b[2];
+                
+                if (asc) {
+                    return dateA > dateB ? 1 : -1;
+                }
+                
+                return dateA < dateB ? 1 : -1;
+            });
+
+            for (let project of arrProjects) {
+                let span = project[1];
+                span.innerHTML = returnDateFromString(span.attributes.name.value).toLocaleDateString();
+                projectListDOM.appendChild(project[0]);
+            }
+        }
+
+        let projectListDOM = document.getElementsByClassName("project-list")[0]; // gets dom element of project-list
+        let arrProjects = new Array();
+
+        for (let i = 0; i < projectListDOM.children.length; i++) {
+            arrProjects[i] = new Array();
+            arrProjects[i][0] = projectListDOM.children[i];
+            arrProjects[i][1] = arrProjects[i][0].querySelector("*[name^='date']");
+            arrProjects[i][2] = returnDateFromString(arrProjects[i][1].attributes.name.value);
+        }
+
+        let sortSelect = document.getElementById("sort-select");
+        function onSortSelectChange() {
+            switch(sortSelect.value) {
+                case "date-dsc":
+                    sort();
+                    break;
+                case "date-asc":
+                    sort(true);
+                    break;
+            }
+        }
+        onSortSelectChange();
+        sortSelect.onchange = onSortSelectChange;
+    </script>
 
 </body>
 </html>
