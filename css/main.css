@@ -1,9 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital@0;1&display=swap");
 
+/* Variables */
+:root {
+    --main-width: 650px;
+}
+
+/* Font Awesome icon style tweak */
 .fa {
     text-decoration: none;
 }
 
+/* Common style */
 body {
     padding: 0;
     margin: 13px;
@@ -25,6 +32,7 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Navbar style */
 nav.navbar {
     margin: 0 0 15px 0;
 }
@@ -51,16 +59,36 @@ nav.navbar ul li.current-page {
     font-weight: bold;
 }
 
-
+/* Main content style */
 main {
     margin: 0 auto;
     padding: 15px 20px 10px;
-    max-width: 575px;
+    max-width: var(--main-width);
     box-sizing: border-box;
 
     border-radius: 8px;
 
     background-color: white
+}
+
+main *:not(.project-list) {
+    opacity: 0%;
+
+    animation-name: main-children-anim;
+    animation-duration: 350ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes main-children-anim {
+    0% {
+        opacity: 0%;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 100%;
+        transform: scale(1.0);
+    }
 }
 
 main ul {
@@ -71,67 +99,7 @@ main ul li {
     margin: 7px 0;
 }
 
-img.avatar {
-    width: 80%;
-    max-width: 200px;
-    display: block;
-    margin: auto;
-}
-
-div.sort-div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-
-    height: 20px;
-}
-
-
-.project-list .project-row {
-    display: block;
-    box-sizing: content-box;
-    margin: 30px 0 20px 0;
-}
-
-.project-list .project-row:first-child {
-    margin-top: 15px;
-}
-
-.project-list .project-row:not(:last-child) {
-    padding: 0 0 6px 0;
-
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
-    border-bottom-color: rgba(0, 0, 0, 0.164);
-}
-
-.project-row img {
-    width: 80%;
-    max-width: 320px;
-    display: block;
-    margin: 0 auto 30px auto;
-
-    border-radius: 15px;
-
-    transition-duration: 0.35s;
-    transition-property: box-shadow;
-
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
-
-.project-row img:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-}
-
-.project-row h3 {
-    text-align: center;
-}
-
-.project-row p {
-    text-align: center;
-}
-
+/* Footer style */
 .copyright {
     text-align: center;
 }

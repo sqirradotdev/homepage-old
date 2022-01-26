@@ -1,0 +1,37 @@
+@import "main.css";
+
+img.avatar {
+    width: 80%;
+    max-width: 200px;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+
+@media only screen and (min-width: 650px) and (min-height: 833px) {
+    body {
+        overflow: hidden;
+    }
+
+    main {
+        margin: unset;
+        overflow: hidden;
+
+        width: var(--main-width);
+        
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+
+    .copyright {
+        text-align: unset;
+        
+        position: absolute;
+        bottom: 0%;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+}
