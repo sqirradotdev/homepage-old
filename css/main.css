@@ -75,7 +75,7 @@ main *:not(.project-list) {
     opacity: 0%;
 
     animation-name: main-children-anim;
-    animation-duration: 350ms;
+    animation-duration: 500ms;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
 }
